@@ -25,11 +25,17 @@
            ">
     <f:textbox field="regexp" />
   </f:entry>
-
+  
   <f:entry title="Succeed if found"
       description="Use this option to force a build to succeed or fail depending on whether 
       a string was found.">
     <f:checkbox type="checkbox" name="textfinder.succeedIfFound" checked="${instance.succeedIfFound}"/>
+  </f:entry>
+  
+  <f:entry title="Succeed if found in all files"
+      description="Use this option to force a build to succeed or fail depending on whether 
+      a string was found in all specified files.">
+    <f:checkbox type="checkbox" name="textfinder.succeedIfFoundInAllFiles" checked="${instance.succeedIfFoundInAllFiles}"/>
   </f:entry>
   
   <f:entry title="Unstable if found"
