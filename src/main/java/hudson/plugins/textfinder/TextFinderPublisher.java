@@ -126,6 +126,7 @@ public class TextFinderPublisher extends Recorder implements Serializable {
 
                         for (String file : files) {
                             File f = new File(ws, file);
+                            boolean found = false;
 
                             if (!f.exists()) {
                                 logger.println("Jenkins Text Finder: Unable to" +
@@ -137,14 +138,14 @@ public class TextFinderPublisher extends Recorder implements Serializable {
                                     " read from file '" + f + "'");
                                 continue;
                             }
-                            if(succeedIfFoundInAllFiles) {
-                                foundText &= checkFile(f, pattern, logger, false);
+                            found = checkFile(f, pattern, logger, false);
+                            logger.println("Found " + pattern + " in " + f + ": " + found);
+                            if(succeedIfFoundInAllFiles) {                                
+                                foundText &= found;                                
                             } else {
-                                foundText |= checkFile(f, pattern, logger, false);
-                            }
-                            logger.println("Found " + pattern + " in " + f + ": " + foundText);
+                                foundText |= found;
+                            }                            
                         }
-
                         return foundText;
                     }
                 });
